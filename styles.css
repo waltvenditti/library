@@ -13,12 +13,11 @@ body {
     flex-direction: column;
 }
 
-#library {
-    display: flex;
-    flex-direction: column;
+#new-book-field-and-button {
+    margin-bottom: 16px;
 }
 
-.book-card {
+#library {
     display: flex;
     flex-direction: column;
 }
@@ -27,15 +26,36 @@ body {
     caret-color: transparent;
 }
 
+button {
+    caret-color: transparent;
+}
+
 #submit-button {
-    max-width: 100px;
+}
+
+#library {
+    border: 5px solid purple;
 }
 
 #submit-and-cancel {
     caret-color: transparent;
 }
 
-.book-card {
+.book-card-read {
+    border: 1px solid lime;
     display: flex;
     flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.book-card-notread {
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.card-buttons {
+    display: flex;
+    justify-content: space-between;
 }

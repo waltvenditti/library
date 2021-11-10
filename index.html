@@ -11,29 +11,32 @@
         <h1>The Electronic Library</h1>
     </header>
     <div id='new-book-field-and-button'>
-        <button>Add New Book</button>
+        <button id='add-new-book'>Add New Book</button>
         <div id='new-book-form'>
-            <input type='text' name='title-input'>
-            <input type='text' name='author-input'>
-            <input type='number' name='pagecount-input'>
+            <input type='text' name='title-input' id='title-field'>
+            <input type='text' name='author-input' id='author-field'>
+            <input type='text' name='pagecount-input' id='pagecount-field'>
             <div id='radio-buttons'>
                 <span id='read-text'>Book read?: </span>
-                <input type='radio' name='read-input' value='read'>Read
-                <input type='radio' name='read-input' value='not read'>Not Read
+                <input type='radio' name='read-input' value='read' id='rad-read'>Read
+                <input type='radio' name='read-input' value='not read' id='rad-nread'>Not Read
             </div>
             <div id='submit-and-cancel'>
-                <input id='submit-button' type='submit' name='submit-info' value='Add To Library'>
+                <button id='submit-button'>Add To Library</button>
                 <button id='cancel-button'>Cancel</button>
             </div>
         </div>
     </div>
     <div id='library'>
-        <div class='book-card'>
-            <p>The Second World War by Antony Beevor, 800 pages, read.</p>
+        <!--
+        <div class='book-card-notread'>
+            <p class='card-p'>Title by Author, x pages, read.</p>
+            <div class='card-buttons'>
+                <button class='card-read-button'>Mark as Unread</button>
+                <button class='card-delete-button'>Delete Book</button>
+            </div>
         </div>
-        <div class='book-card'>
-            <p>Snow Crash by Neal Stephenson, 300 pages, read.</p>
-        </div>
+        -->
     </div>
 </body>
 </html>
