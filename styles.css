@@ -1,5 +1,5 @@
 * {
-    border: 1px solid black;
+    border: 0px solid black;
     caret-color: ;
 }
 
@@ -8,9 +8,22 @@ body {
     flex-direction: column;
 }
 
+input {
+    border: 1px solid darkgrey;
+    margin: 4px;
+}
+
 #new-book-form {
     display: flex;
     flex-direction: column;
+}
+
+.input-div {
+    display: flex;
+}
+
+.input-div p {
+    margin: 0;
 }
 
 #new-book-field-and-button {

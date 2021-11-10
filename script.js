@@ -35,13 +35,23 @@ function loopThruBooksPrimitive() {
     };
 };
 
+//see index.html for a commented out template for the card
 function createCard(obj, idNum) {
-    let cardID = `bid${idNum}`;
+    let cardID = `cid${idNum}`;
+    let btnReadID = `brid${idNum}`;
+    let btnDelID = `bdid${idNum}`;
+    let pID = `pid${idNum}`;
+
     const cardDiv = document.createElement('div');
     const cardBtns = document.createElement('div');
     const cardP = document.createElement('p');
     const cardBtnRead = document.createElement('button');
     const cardBtnDel = document.createElement('button');
+
+    cardDiv.id = cardID;
+    cardBtnRead.id = btnReadID;
+    cardBtnDel.id = btnDelID;
+    cardP.id = pID;
 
     cardDiv.classList.add('book-card-read');
     cardDiv.classList.add('book-card-notread');
@@ -50,7 +60,6 @@ function createCard(obj, idNum) {
     } else {
         cardDiv.classList.toggle('book-card-read')
     }
-    cardDiv.id = cardID;
     cardBtns.classList.add('card-buttons');
     cardP.classList.add('card-p');
     cardBtnRead.classList.add('card-read-button');
@@ -58,27 +67,36 @@ function createCard(obj, idNum) {
 
     cardP.textContent = obj.info();
     if (obj.read === 'read') {
-        cardBtnRead.textContent = 'Mark as Read';
-    } else {
         cardBtnRead.textContent = 'Mark as Unread';
+    } else {
+        cardBtnRead.textContent = 'Mark as Read';
     }
     cardBtnDel.textContent = 'Delete Book';
-
-    //button event listeners added to two new buttons
-   
-    cardBtnRead.addEventListener('click', (cardID) => {
-        let cardDiv = document.querySelector('#cardID');
-        
-        //change class on card div
-        //change button
-    });
 
     libraryDiv.appendChild(cardDiv);
     cardDiv.appendChild(cardP);
     cardDiv.appendChild(cardBtns);
     cardBtns.appendChild(cardBtnRead);
     cardBtns.appendChild(cardBtnDel);
+
+    cardBtnRead.addEventListener('click', function(){clickReadButton(cardID, btnReadID, pID);});
+
+    cardBtnDel.addEventListener('click', function(){deleteBookCard(idNum)});
 };
+
+function deleteBookCard(index) {
+    if (!window.confirm(`Are you sure you want to delete ${myLibrary[index].title}?`)) return;
+    deleteAllCards();
+    myLibrary.splice(index, 1);
+    generateLibrary();    
+}
+
+function deleteAllCards() {
+    for (let i = myLibrary.length - 1; i >= 0; i--) {
+        cardToDel = document.querySelector(`#cid${i}`);
+        libraryDiv.removeChild(cardToDel);
+    }
+}
 
 function generateLibrary () {
     for (let i = 0; i < myLibrary.length; i++) {
@@ -154,11 +172,36 @@ function clearInputFields() {
     fieldRadioNotRead.checked = true;
 }
 
+function clickReadButton(cardID, btnReadID, pID) {
+    const cardDiv = document.querySelector(`#${cardID}`);
+    const cardBtnRead = document.querySelector(`#${btnReadID}`);
+    const cardP = document.querySelector(`#${pID}`);
+    let index = Number(cardID.slice(-1));
+    
+    if (cardBtnRead.textContent === 'Mark as Read') {
+        cardBtnRead.textContent = 'Mark as Unread';
+    } else {
+        cardBtnRead.textContent = 'Mark as Read';
+    }
+    cardDiv.classList.toggle('book-card-notread')
+    cardDiv.classList.toggle('book-card-read')    
+
+    if (myLibrary[index].read === 'read') {
+        myLibrary[index].read = 'unread';
+    } else {
+        myLibrary[index].read = 'read';
+    }
+
+    cardP.textContent = myLibrary[index].info();
+}
+
 
 // button-listeners
+// button listeners for book cards are added in the 
+// createCard() function
 //-----------------
 btnAddNewBook.addEventListener('click', () => {
-    if (addNewForm.style['display'] === 'none') {
+    if (addNewForm.style['display'] === 'none' || addNewForm.style['display'] === '') {
         addNewForm.style['display'] = 'flex';
     }
 });
@@ -170,8 +213,10 @@ btnCancelAddNew.addEventListener('click', () => {
 btnSubmit.addEventListener('click', () => {
     inputValues = getInput();
     let submitSuccess = addBookToLibrary(inputValues[0], inputValues[1], Number(inputValues[2]), inputValues[3],);
-    if (submitSuccess === true) clearInputFields();
-    //create and display new book card
+    if (submitSuccess === true) {
+        clearInputFields();
+        createCard(myLibrary[myLibrary.length-1], myLibrary.length-1);
+    }
 });
 
 
