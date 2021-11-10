@@ -1,0 +1,41 @@
+* {
+    border: 1px solid black;
+    caret-color: ;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+#new-book-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#library {
+    display: flex;
+    flex-direction: column;
+}
+
+.book-card {
+    display: flex;
+    flex-direction: column;
+}
+
+#radio-buttons {
+    caret-color: transparent;
+}
+
+#submit-button {
+    max-width: 100px;
+}
+
+#submit-and-cancel {
+    caret-color: transparent;
+}
+
+.book-card {
+    display: flex;
+    flex-direction: column;
+}

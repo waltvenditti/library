@@ -20,18 +20,25 @@ function Book(title, author, pageCount, read) {
     this.read = read;
 }
 Book.prototype.info = function() {
-    return (`${title} by ${author}, ${pageCount} pages, ${read}.`);
+    return (`${this.title} by ${this.author}, ${this.pageCount} pages, ${this.read}.`);
+}
+Book.prototype.changeReadStatus = function() {
+    if (this.read === 'read') this.read = 'not read';
+    else this.read = 'read';
 }
 
 function loopThruBooksPrimitive() {
-    for (let i in myLibrary) {
-        console.log(Object.keys(myLibrary[i]));
+    for (let i = 0; i < myLibrary.length; i++ ) {
+        let objKeys = Object.keys(myLibrary[i]);
+        for (let j = 0; j < objKeys.length; j++) {
+            console.log(myLibrary[i][objKeys[j]]);
         }
-    }
+    };
+};
 
 // test books
 addBookToLibrary('Snow Crash', 'Neal Stephenson', 400, 'read');
-addBookToLibrary('Ficciones', 'Jorge Louis Borges', '100', 'read');
+addBookToLibrary('Ficciones', 'Jorge Louis Borges', 100, 'read');
 addBookToLibrary('Tragedy and Hope', 'Carroll Quigley', 1200, 'not read');
 addBookToLibrary('The Second World War', 'Antony Beevor', 800, 'read');
 
