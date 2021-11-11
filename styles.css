@@ -35,10 +35,12 @@ input {
 #add-new-book {
     margin-bottom: 12px;
     margin-left: 4px;
+    padding: 8px;
+
 }
 
 #new-book-form {
-    display: flex;
+    display: none;
     flex-direction: column;
 }
 
@@ -82,6 +84,11 @@ button {
 #submit-and-cancel {
     caret-color: transparent;
     margin-top: 12px;
+}
+
+#submit-and-cancel button {
+    padding: 8px;
+    margin-right: 12px;
 }
 
 #cancel-button {
