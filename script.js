@@ -177,9 +177,6 @@ Book.prototype.changeReadStatus = function() {
 }
 
 
-//loopThruBooksPrimitive();
-
-
 // DOM selectors
 //-----------------
 
