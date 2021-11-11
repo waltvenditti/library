@@ -52,7 +52,25 @@ input {
 #add-new-book {
     margin: 8px;
     padding: 8px;
+}
 
+#two-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+#reset-data {
+    margin: 8px;
+    padding: 8px;
+    margin-right: 0;
+    background-color: lightsteelblue;
+}
+#reset-data:hover {
+    background-color: #8699B2;
+}
+#reset-data:active {
+    background-color: black;
+    color: #8699B2;
 }
 
 #new-book-form {

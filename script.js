@@ -88,6 +88,7 @@ function deleteBookCard(index) {
     if (!window.confirm(`Are you sure you want to delete ${myLibrary[index].title}?`)) return;
     deleteAllCards();
     myLibrary.splice(index, 1);
+    refreshLocalStorage();
     generateLibrary();    
 }
 
@@ -102,6 +103,59 @@ function generateLibrary () {
     for (let i = 0; i < myLibrary.length; i++) {
         createCard(myLibrary[i], i);
     }
+}
+
+function saveToLocalStorage() {
+    for (let i = 0; i < myLibrary.length; i++) {
+        let arrayToStore = [
+            myLibrary[i].title, '$',
+            myLibrary[i].author, '$',
+            myLibrary[i].pageCount, '$',
+            myLibrary[i].read, '$',
+        ]
+        localStorage.setItem(`cid${i}`, arrayToStore);
+    }
+}
+
+function refreshLocalStorage() {
+    localStorage.clear();
+    localStorage.setItem('firstVis', null);
+    saveToLocalStorage();
+}
+
+function checkLocalStorage() {
+    //runs when site first loaded
+    len = localStorage.length;
+    if (len === 0) {
+        localStorage.setItem('firstVis', null);
+        addBookToLibrary('The Aleph and Other Stories', 'Jorge Louis Borges and Norman Thomas Di Giovanni', 286, 'read');
+        addBookToLibrary('Tragedy and Hope', 'Carroll Quigley', 1348, 'not read');
+        addBookToLibrary('The Second World War', 'Antony Beevor', 881, 'read');
+        generateLibrary();
+        saveToLocalStorage();
+        return;
+    }
+    if (len === 1) return;
+    deleteAllCards();
+    emptyLibrary();
+    for (i = 0; i < len-1; i++) {
+        bookStr = localStorage.getItem(`cid${i}`)
+        bookArray = bookStr.split(',$,');
+        bookArray[2] = Number(bookArray[2]);
+        bookArray[3] = bookArray[3].slice(0,-2);
+        let bookObj = new Book(
+            bookArray[0],
+            bookArray[1],
+            bookArray[2],
+            bookArray[3]
+        )
+        myLibrary.push(bookObj);
+    }
+    generateLibrary();
+}
+
+function emptyLibrary() {
+    while (myLibrary.length > 0) myLibrary.pop();
 }
 
 
@@ -133,6 +187,7 @@ Book.prototype.changeReadStatus = function() {
 btnAddNewBook = document.querySelector('#add-new-book');
 btnCancelAddNew = document.querySelector('#cancel-button');
 btnSubmit = document.querySelector('#submit-button');
+btnReset = document.querySelector('#reset-data');
 
 //input fields
 fieldTitle = document.querySelector('#title-field');
@@ -191,7 +246,7 @@ function clickReadButton(cardID, btnReadID, pID) {
     } else {
         myLibrary[index].read = 'read';
     }
-
+    refreshLocalStorage();
     cardP.textContent = myLibrary[index].info();
 }
 
@@ -208,6 +263,7 @@ btnAddNewBook.addEventListener('click', () => {
 
 btnCancelAddNew.addEventListener('click', () => {
         addNewForm.style['display'] = 'none';
+        clearInputFields();
 });
 
 btnSubmit.addEventListener('click', () => {
@@ -215,17 +271,28 @@ btnSubmit.addEventListener('click', () => {
     let submitSuccess = addBookToLibrary(inputValues[0], inputValues[1], Number(inputValues[2]), inputValues[3],);
     if (submitSuccess === true) {
         clearInputFields();
+        addNewForm.style['display'] = 'none';
         createCard(myLibrary[myLibrary.length-1], myLibrary.length-1);
+        saveToLocalStorage();
     }
 });
+
+btnReset.addEventListener('click', () => {
+    localStorage.clear();
+    deleteAllCards();
+    emptyLibrary();
+    checkLocalStorage();
+})
 
 
 
 // test books
 //-----------
-
+/*
 addBookToLibrary('The Aleph and Other Stories', 'Jorge Louis Borges and Norman Thomas Di Giovanni', 286, 'read');
 addBookToLibrary('Tragedy and Hope', 'Carroll Quigley', 1348, 'not read');
 addBookToLibrary('The Second World War', 'Antony Beevor', 881, 'read');
 
 generateLibrary();
+*/
+checkLocalStorage();
