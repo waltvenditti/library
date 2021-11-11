@@ -1,6 +1,16 @@
+@font-face {
+    font-family: 'highland gothic';
+    src: url(highland-gothic/HighlandGothicFLF.ttf);
+}
+
 * {
     border: 0px solid black;
-    caret-color: ;
+    font-family: 'highland-gothic', sans-serif;
+    caret-color: transparent;
+}
+
+html {
+    background-color: dimgray;
 }
 
 body {
@@ -8,9 +18,23 @@ body {
     flex-direction: column;
 }
 
+h1 {
+    font-size: 40px;
+    margin-bottom: 48px;
+}
+
 input {
     border: 1px solid darkgrey;
     margin: 4px;
+}
+
+#new-book-field-and-button {
+    margin-left: 4px;
+}
+
+#add-new-book {
+    margin-bottom: 12px;
+    margin-left: 4px;
 }
 
 #new-book-form {
@@ -33,42 +57,78 @@ input {
 #library {
     display: flex;
     flex-direction: column;
+    margin-left: 4px;
 }
 
 #radio-buttons {
     caret-color: transparent;
+    margin-top: 12px;
+}
+
+#rad-read,
+#rad-nread {
+    margin-left: 8px;
 }
 
 button {
     caret-color: transparent;
-}
-
-#submit-button {
+    border-radius: 0px;
 }
 
 #library {
-    border: 5px solid purple;
+    border: 0px solid purple;
 }
 
 #submit-and-cancel {
     caret-color: transparent;
+    margin-top: 12px;
+}
+
+#cancel-button {
+    background-color: lightsteelblue;
+}
+#cancel-button:hover {
+    background-color: #8699B2;
+}
+#cancel-button:active {
+    background-color: black;
+    color: #8699B2;
 }
 
 .book-card-read {
-    border: 1px solid lime;
     display: flex;
     flex-direction: column;
     margin-bottom: 16px;
+    background-color: darkgrey;
+    color: black;
 }
 
+
+
 .book-card-notread {
-    border: 1px solid red;
     display: flex;
     flex-direction: column;
     margin-bottom: 16px;
+    background-color: lightgrey;
+    color: black;
 }
 
 .card-buttons {
     display: flex;
     justify-content: space-between;
+}
+
+.card-delete-button {
+    background-color: lightsteelblue;
+}
+.card-delete-button:hover {
+    background-color: #8699B2;
+}
+.card-delete-button:active {
+    background-color: black;
+    color: #8699B2;
+}
+
+h2 {
+    margin-top: 32px;
 }
