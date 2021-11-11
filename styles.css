@@ -3,9 +3,14 @@
     src: url(highland-gothic/HighlandGothicFLF.ttf);
 }
 
+@font-face {
+    font-family: 'questrial';
+    src: url(questrial/Questrial-Regular.ttf);
+}
+
 * {
     border: 0px solid black;
-    font-family: 'highland-gothic', sans-serif;
+    font-family: 'questrial', sans-serif;
     caret-color: transparent;
 }
 
@@ -23,15 +28,14 @@ body {
 }
 
 h1 {
-    font-size: 40px;
-    margin-bottom: 48px;
+    font-size: 48px;
+    margin-bottom: 0;
     background-color:grey;
     width: 100%;
     margin-top: 0;
     padding-top: 24px;
     padding-bottom: 18px;
     padding-left: 8px;
-    border-bottom: 3px solid black;
 
 }
 
@@ -42,8 +46,7 @@ input {
 
 #new-book-field-and-button {
     background-color: grey;
-    border-top: 3px solid black;
-    border-bottom: 3px solid black;
+    border-bottom: 2px solid black;
 }
 
 #add-new-book {
@@ -92,12 +95,12 @@ input {
 
 h2 {
     margin-top: 32px;
-    background-color: grey;
+    background-color: lightsteelblue;
     padding-top: 8px;
     padding-bottom: 8px;
     padding-left: 8px;
-    border-top: 3px solid black;
-    border-bottom: 3px solid black;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
 }
 
 #library {
@@ -108,6 +111,7 @@ h2 {
 button {
     caret-color: transparent;
     border-radius: 0px;
+    font-size: 16px;
 }
 
 #library {
@@ -124,18 +128,19 @@ button {
     display: flex;
     flex-direction: column;
     margin-bottom: 16px;
+    font-size: 18px;
 }
 .book-card-read {
     background-color: darkgrey;
     color: black;
-    border-top: 3px solid black;
-    border-bottom: 3px solid black;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
 }
 .book-card-notread {
     background-color: lightgrey;
     color: black;
-    border-top: 3px solid black;
-    border-bottom: 3px solid black;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
 }
 
 .book-card-notread p,

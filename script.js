@@ -224,9 +224,8 @@ btnSubmit.addEventListener('click', () => {
 // test books
 //-----------
 
-addBookToLibrary('Snow Crash', 'Neal Stephenson', 400, 'read');
-addBookToLibrary('Ficciones', 'Jorge Louis Borges', 100, 'read');
-addBookToLibrary('Tragedy and Hope', 'Carroll Quigley', 1200, 'not read');
-addBookToLibrary('The Second World War', 'Antony Beevor', 800, 'read');
+addBookToLibrary('The Aleph and Other Stories', 'Jorge Louis Borges and Norman Thomas Di Giovanni', 286, 'read');
+addBookToLibrary('Tragedy and Hope', 'Carroll Quigley', 1348, 'not read');
+addBookToLibrary('The Second World War', 'Antony Beevor', 881, 'read');
 
 generateLibrary();
