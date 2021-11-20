@@ -25,16 +25,6 @@ function addBookToLibrary(title, author, pageCount, read) {
     return true;
 }
 
-
-function loopThruBooksPrimitive() {
-    for (let i = 0; i < myLibrary.length; i++ ) {
-        let objKeys = Object.keys(myLibrary[i]);
-        for (let j = 0; j < objKeys.length; j++) {
-            console.log(myLibrary[i][objKeys[j]]);
-        }
-    };
-};
-
 //see index.html for a commented out template for the card
 function createCard(obj, idNum) {
     let cardID = `cid${idNum}`;
@@ -124,7 +114,7 @@ function refreshLocalStorage() {
 }
 
 function checkLocalStorage() {
-    //runs when site first loaded
+    //runs when site first loaded, see bottom of this file
     len = localStorage.length;
     if (len === 0) {
         localStorage.setItem('firstVis', null);
@@ -162,18 +152,20 @@ function emptyLibrary() {
 // book constructor
 //-----------------
 
-function Book(title, author, pageCount, read) {
-    this.title = title;
-    this.author = author;
-    this.pageCount = pageCount;
-    this.read = read;
-}
-Book.prototype.info = function() {
-    return (`${this.title} by ${this.author}, ${this.pageCount} pages, ${this.read}.`);
-}
-Book.prototype.changeReadStatus = function() {
-    if (this.read === 'read') this.read = 'not read';
-    else this.read = 'read';
+class Book {
+    constructor(title, author, pageCount, read) {
+            this.title = title;
+            this.author = author;
+            this.pageCount = pageCount;
+            this.read = read;
+    }
+    info() {
+        return (`${this.title} by ${this.author}, ${this.pageCount} pages, ${this.read}.`);
+    }
+    changeReadStatus() {
+        if (this.read === 'read') this.read = 'not read';
+        else this.read = 'read';
+    }
 }
 
 
